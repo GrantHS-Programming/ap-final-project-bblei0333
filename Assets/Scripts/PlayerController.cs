@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     {
         player = GetComponent<Rigidbody2D>();
     }
-    void OnCollisionEnter2D(Collision2D col)
+    void OnCollisionStay2D(Collision2D col)
     {
        if (GetComponent<AudioSource>().time > 1.4f)
        {
