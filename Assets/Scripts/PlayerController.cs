@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     {
         player = GetComponent<Rigidbody2D>();
     }
-    void OnCollisionExit2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Red")
         {
