@@ -18,7 +18,6 @@ public class TileScrub : MonoBehaviour
     }
     void gon(float olo)
     {
-        Debug.Log(olo);
         Tilemap tilemap = GetComponent<Tilemap>();
         var tilePos = tilemap.WorldToCell(new Vector3(olo, -1.5f, 0));
         tilemap.SetTile(tilePos, null);

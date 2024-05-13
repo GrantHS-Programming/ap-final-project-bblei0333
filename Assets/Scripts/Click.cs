@@ -18,6 +18,5 @@ public class Click : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("what");
     }
 }

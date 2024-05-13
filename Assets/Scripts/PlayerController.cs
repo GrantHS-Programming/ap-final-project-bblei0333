@@ -12,11 +12,18 @@ public class PlayerController : MonoBehaviour
     {
         player = GetComponent<Rigidbody2D>();
     }
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Red")
+        {
+            Debug.Log("red hit");
+        } 
+    
+    }
     void OnCollisionStay2D(Collision2D col)
     {
        if (GetComponent<AudioSource>().time > 1.4f)
        {
-            Debug.Log("GameObject1 collided with");
            SendMessageUpwards("gon", transform.position.x);
        }
     }
