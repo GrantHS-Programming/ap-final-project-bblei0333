@@ -7,18 +7,39 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     public Rigidbody2D player;
     public int lane;
+    public int health = 3;
+    private float iframe = 0;
+    private int combo = 0;
     public BoxCollider2D conan;
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
     }
-    void OnCollisionExit2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Red")
         {
-            Debug.Log("red hit");
+
+            if(iframe == 0){
+                iframe = 1;
+                break();
+                health--;
+                Debug.Log(health);
+            }
+
+
         } 
     
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (other.gameObject.tag == "normie")
+        {
+            if (GetComponent<AudioSource>().time > 1.4f)
+            {
+                combo++;
+            } 
+        }
     }
     void OnCollisionStay2D(Collision2D col)
     {
@@ -30,6 +51,15 @@ public class PlayerController : MonoBehaviour
     void gon()
     {
         //nuthin
+    }
+    void break()
+    {
+        combo = 0;
+    }
+    IEnumerator waitFunction1()
+    {
+        yield return new WaitForSeconds(1);
+        iframe = 0;
     }
 
     // Update is called once per frame
@@ -48,6 +78,10 @@ public class PlayerController : MonoBehaviour
 
         }
         else transform.position = new Vector2(2.71f, -2);
+        if(iframe == 1){
+            StartCoroutine(waitFunction1());
+            iframe = 2;
+        }
 
     }
 }

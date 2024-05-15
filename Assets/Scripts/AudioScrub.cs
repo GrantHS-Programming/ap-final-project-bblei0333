@@ -19,8 +19,10 @@ public class AudioScrub : MonoBehaviour
         if (GUI.changed == true)
         {
             GetComponent<AudioSource>().time = scrollPos;
+            Debug.Log("Not here");
         }
 
         GUI.Label(new Rect(10f, 80f, 100f, 30f), (GetComponent<AudioSource>().time).ToString());
     }
+    
 }

@@ -6,15 +6,19 @@ using UnityEngine.Tilemaps;
 public class TileScrub : MonoBehaviour
 {
     public Tilemap map;
+    private AudioScrub ascrub;
     private float scrollPos = 0f;
     public Rigidbody2D Tilemap;
     public Rigidbody2D player;
+    float tscroll = 0f;
 
     private void Start()
     {
+        ascrub = GameObject.Find("Tilemap").GetComponent<AudioScrub>();
         GetComponent<AudioSource>().Play();
         Tilemap = GetComponent<Rigidbody2D>();
         player = GetComponent<Rigidbody2D>();
+        tscroll = ascrub.scrollPos;
     }
     void gon(float olo)
     {
@@ -50,18 +54,9 @@ public class TileScrub : MonoBehaviour
         tilePos = tilemap.WorldToCell(new Vector3((olo - 0.5f), -5, 0));
         tilemap.SetTile(tilePos, null);
     }
-    private void OnGUI()
-    {
-        scrollPos = GUI.HorizontalSlider(new Rect(0f, 50f, Screen.width, 50f), scrollPos, 0, GetComponent<AudioSource>().clip.length);
-        if (GUI.changed == true)
-        {
-            GetComponent<AudioSource>().time = scrollPos;
-        }
-
-        GUI.Label(new Rect(10f, 80f, 100f, 30f), (GetComponent<AudioSource>().time).ToString());
-    }
     void Update()
     {
+        scrollPos = tscroll;
     transform.position = new Vector2(0.65f, ((GetComponent<AudioSource>().time)*-20));
         if (Input.GetKeyDown(KeyCode.D))
         {
