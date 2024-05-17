@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,27 +12,12 @@ public class PlayerController : MonoBehaviour
     private float iframe = 0;
     private int combo = 0;
     public BoxCollider2D conan;
+    public string helth = "yuh yuh";
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
     }
     void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Red")
-        {
-
-            if(iframe == 0){
-                iframe = 1;
-                break();
-                health--;
-                Debug.Log(health);
-            }
-
-
-        } 
-    
-    }
-    void OnCollisionEnter2D(Collision2D col)
     {
         if (other.gameObject.tag == "normie")
         {
@@ -40,6 +26,19 @@ public class PlayerController : MonoBehaviour
                 combo++;
             } 
         }
+            if (other.gameObject.tag == "Red")
+        {
+
+            if(iframe == 0)
+            {
+                iframe = 1;
+                combo = 0;
+                health--;
+                Debug.Log(health);
+            }
+
+
+        } 
     }
     void OnCollisionStay2D(Collision2D col)
     {
@@ -52,7 +51,7 @@ public class PlayerController : MonoBehaviour
     {
         //nuthin
     }
-    void break()
+    void bend()
     {
         combo = 0;
     }
@@ -82,6 +81,11 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(waitFunction1());
             iframe = 2;
         }
+        helth = health.ToString();
 
+    }
+    void OnGUI()
+    {
+        GUI.Label(new Rect(500, 500, 50, 50), helth);
     }
 }

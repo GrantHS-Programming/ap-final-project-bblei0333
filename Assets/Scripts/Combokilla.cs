@@ -5,17 +5,20 @@ using UnityEngine;
 public class Combokilla : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    public GameObject dave;
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "normie")
         {
-            BroadcastMessage("break");
+            BroadcastMessage("bend");
         }  
     }
     void Start()
     {
+
     }
-    void break()
+    void bend()
     {
         //nothin
     }
@@ -23,5 +26,6 @@ public class Combokilla : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
 }

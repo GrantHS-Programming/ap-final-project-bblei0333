@@ -2796,6 +2796,7 @@ MonoBehaviour:
   lane: 0
   health: 3
   conan: {fileID: 0}
+  helth: 
 --- !u!212 &804564169
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3741,7 +3742,8 @@ GameObject:
   - component: {fileID: 1315901559}
   - component: {fileID: 1315901562}
   - component: {fileID: 1315901561}
-  - component: {fileID: 1315901560}
+  - component: {fileID: 1315901563}
+  - component: {fileID: 1315901564}
   m_Layer: 7
   m_Name: Combo killa
   m_TagString: Detector
@@ -3764,19 +3766,6 @@ Transform:
   m_Father: {fileID: 455130795}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1315901560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1315901558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f3e4e9548138694faf9231c1abcdb97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mayhaps: {fileID: 1315901561}
 --- !u!50 &1315901561
 Rigidbody2D:
   serializedVersion: 4
@@ -3824,6 +3813,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.4, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1315901563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315901558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51c2de3ecf689494b8de0e1003387237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mayhaps: {fileID: 0}
+--- !u!114 &1315901564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315901558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d603aaac6ad494f8297b2ac49c495a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dave: {fileID: 0}
 --- !u!1 &1338048415
 GameObject:
   m_ObjectHideFlags: 0
