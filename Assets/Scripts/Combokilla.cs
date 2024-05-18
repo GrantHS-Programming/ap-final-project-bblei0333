@@ -11,16 +11,13 @@ public class Combokilla : MonoBehaviour
     {
         if (col.gameObject.tag == "normie")
         {
-            BroadcastMessage("bend");
+            Debug.Log("you suck");
+            PlayerController.bend();
         }  
     }
     void Start()
     {
 
-    }
-    void bend()
-    {
-        //nothin
     }
 
     // Update is called once per frame

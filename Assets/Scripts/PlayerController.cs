@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour
     public int lane;
     public int health = 3;
     private float iframe = 0;
-    private int combo = 0;
+    private static int combo = 0;
+    public Font fonty;
     public BoxCollider2D conan;
-    public string helth = "yuh yuh";
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "normie")
         {
-            if (GetComponent<AudioSource>().time > 1.4f)
+            if ((GameObject.Find("Tilemap").GetComponent<AudioSource>().time) > 1.4f)
             {
                 combo++;
             } 
@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
                 iframe = 1;
                 combo = 0;
                 health--;
-                Debug.Log(health);
             }
 
 
@@ -42,7 +41,7 @@ public class PlayerController : MonoBehaviour
     }
     void OnCollisionStay2D(Collision2D col)
     {
-       if (GetComponent<AudioSource>().time > 1.4f)
+        if ((GameObject.Find("Tilemap").GetComponent<AudioSource>().time) > 1.4f)
        {
            SendMessageUpwards("gon", transform.position.x);
        }
@@ -51,7 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         //nuthin
     }
-    void bend()
+    public static void bend()
     {
         combo = 0;
     }
@@ -81,11 +80,21 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(waitFunction1());
             iframe = 2;
         }
-        helth = health.ToString();
 
     }
     void OnGUI()
-    {
-        GUI.Label(new Rect(500, 500, 50, 50), helth);
+    {        
+        GUIStyle headStyle = new GUIStyle();
+        headStyle.fontSize = 60;
+        headStyle.normal.textColor = Color.white;
+        headStyle.font = fonty;
+        GUIStyle sub = new GUIStyle();
+        sub.fontSize = 30;
+        sub.normal.textColor = Color.white;
+        sub.font = fonty;
+        GUI.Label(new Rect(((Screen.width/4)*3), (Screen.height/2), 50, 50), "Lives:  \n"+health, headStyle);
+        GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+200), 50, 50), "Combo:  "+combo, sub);
+
+
     }
 }

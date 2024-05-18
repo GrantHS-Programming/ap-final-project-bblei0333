@@ -58,12 +58,12 @@ public class TileScrub : MonoBehaviour
     {
         scrollPos = tscroll;
     transform.position = new Vector2(0.65f, ((GetComponent<AudioSource>().time)*-20));
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.K))
         {
             Vector2 a = new Vector2(player.position.x, 0);
             Vector2 b = new Vector2(Tilemap.position.x, 0);
             float distance = Vector2.Distance(a, b);
-            Debug.Log((transform.position.y*-2)-58);
+            Debug.Log(((transform.position.y)*-2)-60);
         }
     }
 }
