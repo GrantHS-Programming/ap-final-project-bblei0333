@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public Rigidbody2D player;
-    public int lane;
+    public int score = 0;
     public int health = 3;
     private float iframe = 0;
     private static int combo = 0;
@@ -16,28 +16,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
-    }
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "normie")
-        {
-            if ((GameObject.Find("Tilemap").GetComponent<AudioSource>().time) > 1.4f)
-            {
-                combo++;
-            } 
-        }
-            if (other.gameObject.tag == "Red")
-        {
-
-            if(iframe == 0)
-            {
-                iframe = 1;
-                combo = 0;
-                health--;
-            }
-
-
-        } 
     }
     void OnCollisionStay2D(Collision2D col)
     {
@@ -58,6 +36,20 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         iframe = 0;
+    }
+    public void addscore(int numb){
+        score = score + numb;
+    }
+    public void hurt(){
+        if(iframe == 0){
+            iframe = 1;
+            combo = 0;
+            health--;
+        }
+
+    }
+    public void ding(){
+        combo++;
     }
 
     // Update is called once per frame
