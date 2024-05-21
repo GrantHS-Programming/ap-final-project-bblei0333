@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class high : PlayerController
+public class high : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -15,24 +15,23 @@ public class high : PlayerController
         {
             if ((GameObject.Find("Tilemap").GetComponent<AudioSource>().time) > 1.4f)
             {
-                ding();
-                addscore(100);
+                PlayerController.ding();
+                PlayerController.addscore(100 * ((PlayerController.combo / 1000) + 1));
             } 
-        }
-        if (other.gameObject.tag == "Red")
-        {
-            hurt();
         } 
     }
-        void OnCollisionStay2D(Collision2D col)
+    void OnCollisionStay2D(Collision2D col)
     {
-        if ((GameObject.Find("Tilemap").GetComponent<AudioSource>().time) > 1.4f)
-       {
-           SendMessageUpwards("gon", transform.position.x);
-       }
+    if ((GameObject.Find("Tilemap").GetComponent<AudioSource>().time) > 1.4f)
+        {
+            if(col.gameObject.tag == "normie")
+            {
+                Debug.Log("WE AREW TRY");
+                SendMessageUpwards("hitsend",(transform.position.x));
+            }       
+        }
     }
-    void gon()
-    {
+    void hitsend(){
         //nuthin
     }
     // Update is called once per frame
@@ -40,17 +39,17 @@ public class high : PlayerController
     {        
     Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     mousePosition.z = Camera.main.transform.position.z + Camera.main.nearClipPlane;
-    mousePosition.y = -2;
+    mousePosition.y = -1.5f;
     if (mousePosition.x < 2.71)
     {
         if (mousePosition.x > -2.71)
         {
             transform.position = mousePosition;
         }
-        else transform.position = new Vector2(-2.71f, -2);
+        else transform.position = new Vector2(-2.71f, -1.5f);
 
     }
-    else transform.position = new Vector2(2.71f, -2);
+    else transform.position = new Vector2(2.71f, -1.5f);
     }
 }
 

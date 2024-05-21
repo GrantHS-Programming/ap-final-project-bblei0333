@@ -7,27 +7,20 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public Rigidbody2D player;
-    public int score = 0;
-    public int health = 3;
-    private float iframe = 0;
-    private static int combo = 0;
+    public static int score = 0;
+    public static int health = 3;
+    private static float iframe = 0;
+    public static int combo = 0;
     public Font fonty;
-    public BoxCollider2D conan;
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
     }
-    void OnCollisionStay2D(Collision2D col)
+    void hitsend(float bolo)
     {
-        if ((GameObject.Find("Tilemap").GetComponent<AudioSource>().time) > 1.4f)
-       {
-           SendMessageUpwards("gon", transform.position.x);
-       }
+        SendMessageUpwards("hitter", bolo);
     }
-    void gon()
-    {
-        //nuthin
-    }
+
     public static void bend()
     {
         combo = 0;
@@ -37,10 +30,10 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1);
         iframe = 0;
     }
-    public void addscore(int numb){
+    public static void addscore(int numb){
         score = score + numb;
     }
-    public void hurt(){
+    public static void hurt(){
         if(iframe == 0){
             iframe = 1;
             combo = 0;
@@ -48,7 +41,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    public void ding(){
+    public static void ding(){
         combo++;
     }
 
@@ -86,7 +79,5 @@ public class PlayerController : MonoBehaviour
         sub.font = fonty;
         GUI.Label(new Rect(((Screen.width/4)*3), (Screen.height/2), 50, 50), "Lives:  \n"+health, headStyle);
         GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+200), 50, 50), "Combo:  "+combo, sub);
-
-
     }
 }

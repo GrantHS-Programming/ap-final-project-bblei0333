@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
-
 public class TileScrub : MonoBehaviour
 {
     public Tilemap map;
@@ -20,39 +19,41 @@ public class TileScrub : MonoBehaviour
         player = GetComponent<Rigidbody2D>();
         tscroll = ascrub.scrollPos;
     }
-    void gon(float olo)
+    void hitter(float olo)
     {
         Tilemap tilemap = GetComponent<Tilemap>();
-        var tilePos = tilemap.WorldToCell(new Vector3(olo, -1.5f, 0));
+        Debug.Log(olo);
+        var tilePos = tilemap.WorldToCell(new Vector3(olo, 2, 0));
         tilemap.SetTile(tilePos, null);
+        tilePos = tilemap.WorldToCell(new Vector3((olo + 0.5f), -1.5f, 0));
+        tilemap.SetTile(tilePos, null);
+        tilePos = tilemap.WorldToCell(new Vector3((olo - 0.5f), -1.5f, 0));
+        tilemap.SetTile(tilePos, null);  
         tilePos = tilemap.WorldToCell(new Vector3(olo, -2, 0));
+        tilemap.SetTile(tilePos, null);
+        tilePos = tilemap.WorldToCell(new Vector3((olo + 0.5f), -2, 0));
+        tilemap.SetTile(tilePos, null);
+        tilePos = tilemap.WorldToCell(new Vector3((olo - 0.5f), -2, 0));
         tilemap.SetTile(tilePos, null);
         tilePos = tilemap.WorldToCell(new Vector3(olo, -3, 0));
         tilemap.SetTile(tilePos, null);
         tilePos = tilemap.WorldToCell(new Vector3(olo, -4, 0));
-        tilemap.SetTile(tilePos, null); 
-        tilePos = tilemap.WorldToCell(new Vector3(olo, -5, 0));
-        tilemap.SetTile(tilePos, null);       
-        tilePos = tilemap.WorldToCell(new Vector3((olo + 0.5f), -1.5f, 0));
-        tilemap.SetTile(tilePos, null);   
-        tilePos = tilemap.WorldToCell(new Vector3((olo + 0.5f), -2, 0));
         tilemap.SetTile(tilePos, null);
         tilePos = tilemap.WorldToCell(new Vector3((olo + 0.5f), -3, 0));
         tilemap.SetTile(tilePos, null);
         tilePos = tilemap.WorldToCell(new Vector3((olo + 0.5f), -4, 0));
-        tilemap.SetTile(tilePos, null);   
-        tilePos = tilemap.WorldToCell(new Vector3((olo + 0.5f), -5, 0));
-        tilemap.SetTile(tilePos, null);
-        tilePos = tilemap.WorldToCell(new Vector3((olo - 0.5f), -1.5f, 0));
-        tilemap.SetTile(tilePos, null);    
-        tilePos = tilemap.WorldToCell(new Vector3((olo - 0.5f), -2, 0));
         tilemap.SetTile(tilePos, null);
         tilePos = tilemap.WorldToCell(new Vector3((olo - 0.5f), -3, 0));
         tilemap.SetTile(tilePos, null);
         tilePos = tilemap.WorldToCell(new Vector3((olo - 0.5f), -4, 0));
         tilemap.SetTile(tilePos, null);
+        tilePos = tilemap.WorldToCell(new Vector3(olo, -5, 0));
+        tilemap.SetTile(tilePos, null);
+        tilePos = tilemap.WorldToCell(new Vector3((olo + 0.5f), -5, 0));
+        tilemap.SetTile(tilePos, null);
         tilePos = tilemap.WorldToCell(new Vector3((olo - 0.5f), -5, 0));
         tilemap.SetTile(tilePos, null);
+        
     }
     void Update()
     {

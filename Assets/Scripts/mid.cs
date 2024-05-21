@@ -9,7 +9,31 @@ public class mid : MonoBehaviour
     {
         
     }
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "normie")
+        {
+            if ((GameObject.Find("Tilemap").GetComponent<AudioSource>().time) > 1.4f)
+            {
+                PlayerController.ding();
+                PlayerController.addscore(50 * ((PlayerController.combo / 1000) + 1));
+            } 
+        }
+    }
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if ((GameObject.Find("Tilemap").GetComponent<AudioSource>().time) > 1.4f)
+        {
+            if(col.gameObject.tag == "normie")
+            {
+                SendMessageUpwards("hitsend",(transform.position.x));
+            } 
 
+        }
+    }
+        void hitsend(){
+        //nuthin
+    }
     // Update is called once per frame
     void Update()
     {        
@@ -28,3 +52,4 @@ public class mid : MonoBehaviour
     else transform.position = new Vector2(2.71f, -2);
     }
 }
+

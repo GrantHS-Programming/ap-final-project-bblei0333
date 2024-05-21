@@ -11,7 +11,6 @@ public class Combokilla : MonoBehaviour
     {
         if (col.gameObject.tag == "normie")
         {
-            Debug.Log("you suck");
             PlayerController.bend();
         }  
     }
