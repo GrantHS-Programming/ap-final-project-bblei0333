@@ -17,6 +17,7 @@ public class low : MonoBehaviour
             {
                 PlayerController.ding();
                 PlayerController.addscore(10 * ((PlayerController.combo / 1000) + 1));
+                PlayerController.displayhit("BAD!");
             } 
         }
     }

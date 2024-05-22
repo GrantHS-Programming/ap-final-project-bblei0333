@@ -7,31 +7,48 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public Rigidbody2D player;
+    public static string thehit = " ";
     public static int score = 0;
     public static int health = 3;
     private static float iframe = 0;
+    private static float cframe = 0;
     public static int combo = 0;
     public Font fonty;
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
     }
-    void hitsend(float bolo)
-    {
-        SendMessageUpwards("hitter", bolo);
-    }
+    //void hitsend(float bolo)
+    //{
+        //SendMessageUpwards("hitter", bolo);
+    //}
 
     public static void bend()
     {
         combo = 0;
+        displayhit("MISS!");
     }
     IEnumerator waitFunction1()
     {
         yield return new WaitForSeconds(1);
         iframe = 0;
+    }    
+    IEnumerator waitFunction2()
+    {
+        yield return new WaitForSeconds(0.1f);
+        cframe = 0;
     }
     public static void addscore(int numb){
-        score = score + numb;
+        if(cframe == 0){
+            score = score + numb;
+            cframe = 1;
+        }
+
+    }
+    public static void displayhit(string thit){
+        if(cframe == 0){
+            thehit = thit;
+        }
     }
     public static void hurt(){
         if(iframe == 0){
@@ -42,7 +59,10 @@ public class PlayerController : MonoBehaviour
 
     }
     public static void ding(){
-        combo++;
+        if(cframe == 0){
+            combo++;     
+        }
+
     }
 
     // Update is called once per frame
@@ -65,6 +85,10 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(waitFunction1());
             iframe = 2;
         }
+        if(cframe == 1){
+            StartCoroutine(waitFunction2());
+            cframe = 2;
+        }
 
     }
     void OnGUI()
@@ -77,7 +101,12 @@ public class PlayerController : MonoBehaviour
         sub.fontSize = 30;
         sub.normal.textColor = Color.white;
         sub.font = fonty;
+        GUIStyle hitch = new GUIStyle();
+        hitch.fontSize = 20;
+        hitch.normal.textColor = Color.white;
+        hitch.font = fonty;
         GUI.Label(new Rect(((Screen.width/4)*3), (Screen.height/2), 50, 50), "Lives:  \n"+health, headStyle);
         GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+200), 50, 50), "Combo:  "+combo, sub);
+        GUI.Label(new Rect(((Screen.width/2) -60), ((Screen.height/20)*19), 50, 50), thehit, hitch);
     }
 }

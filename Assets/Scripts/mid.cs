@@ -17,6 +17,7 @@ public class mid : MonoBehaviour
             {
                 PlayerController.ding();
                 PlayerController.addscore(50 * ((PlayerController.combo / 1000) + 1));
+                PlayerController.displayhit("OK!");
             } 
         }
     }

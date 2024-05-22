@@ -17,6 +17,7 @@ public class high : MonoBehaviour
             {
                 PlayerController.ding();
                 PlayerController.addscore(100 * ((PlayerController.combo / 1000) + 1));
+                PlayerController.displayhit("PERFECT!");
             } 
         } 
     }
@@ -26,7 +27,6 @@ public class high : MonoBehaviour
         {
             if(col.gameObject.tag == "normie")
             {
-                Debug.Log("WE AREW TRY");
                 SendMessageUpwards("hitsend",(transform.position.x));
             }       
         }
