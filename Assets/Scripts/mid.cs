@@ -15,9 +15,13 @@ public class mid : MonoBehaviour
         {
             if ((GameObject.Find("Tilemap").GetComponent<AudioSource>().time) > 1.4f)
             {
-                PlayerController.ding();
-                PlayerController.addscore(50 * ((PlayerController.combo / 1000) + 1));
-                PlayerController.displayhit("OK!");
+                if(PlayerController.cframe == 0)
+                {
+                    PlayerController.ding();
+                    PlayerController.addscore(50 * ((PlayerController.combo / 10) + 1));
+                    PlayerController.displayhit("OK!");
+                    PlayerController.cframer();
+                }
             } 
         }
     }

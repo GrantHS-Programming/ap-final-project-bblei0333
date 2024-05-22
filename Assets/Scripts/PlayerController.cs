@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public static int score = 0;
     public static int health = 3;
     private static float iframe = 0;
-    private static float cframe = 0;
+    public static float cframe = 0;
     public static int combo = 0;
     public Font fonty;
     void Start()
@@ -26,7 +26,10 @@ public class PlayerController : MonoBehaviour
     public static void bend()
     {
         combo = 0;
-        displayhit("MISS!");
+        if(cframe == 0)
+        {
+            displayhit("MISS!");
+        }
     }
     IEnumerator waitFunction1()
     {
@@ -35,20 +38,18 @@ public class PlayerController : MonoBehaviour
     }    
     IEnumerator waitFunction2()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         cframe = 0;
     }
+    public static void cframer(){
+        cframe = 1;
+    }
     public static void addscore(int numb){
-        if(cframe == 0){
-            score = score + numb;
-            cframe = 1;
-        }
-
+        score = score + numb;
     }
     public static void displayhit(string thit){
-        if(cframe == 0){
-            thehit = thit;
-        }
+        Debug.Log(thit);
+        thehit = thit;
     }
     public static void hurt(){
         if(iframe == 0){
@@ -107,6 +108,7 @@ public class PlayerController : MonoBehaviour
         hitch.font = fonty;
         GUI.Label(new Rect(((Screen.width/4)*3), (Screen.height/2), 50, 50), "Lives:  \n"+health, headStyle);
         GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+200), 50, 50), "Combo:  "+combo, sub);
+        GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+300), 50, 50), "Score:  "+score, sub);
         GUI.Label(new Rect(((Screen.width/2) -60), ((Screen.height/20)*19), 50, 50), thehit, hitch);
     }
 }
