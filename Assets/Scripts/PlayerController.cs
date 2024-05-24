@@ -9,31 +9,15 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D player;
     public static string thehit = " ";
     public static int score = 0;
-    public static int holder = 0;
     public static int health = 3;
     private static float iframe = 0;
     public static float cframe = 0;
     public static float hframe = 0;
     public static int combo = 0;
-    private static int x = 0;
     public Font fonty;
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
-    }
-    public static void starthold(){
-        Debug.Log("hold started for real");
-        while(holder == 2 && x < 100){
-            Debug.Log("holder is 2 we are ready");
-            if(hframe == 0)
-            {
-            Debug.Log("HIT EM WIT DA DUH DUH");
-            hframe = 1;
-            displayhit("PERFECT!");
-            addscore(100 * ((PlayerController.combo / 10) + 1));
-            x++;
-            }
-        }
     }
     public static void bend()
     {
@@ -55,24 +39,18 @@ public class PlayerController : MonoBehaviour
     }    
     IEnumerator waitFunction3()
     {
-        Debug.Log("Real waiting started");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.25f);
         hframe = 0;
-        Debug.Log("Waiting ended");
     }
     public static void cframer(){
         cframe = 1;
     }
     public static void addscore(int numb){
-        Debug.Log(numb);
         score = score + numb;
     }
     public static void displayhit(string thit){
         Debug.Log(thit);
         thehit = thit;
-    }
-    public static void holdchange(int chang){
-        holder = chang;
     }
     public static void hurt(){
         if(iframe == 0){
@@ -114,15 +92,8 @@ public class PlayerController : MonoBehaviour
             cframe = 2;
         }
         if(hframe == 1){
-            Debug.Log("Waiting started");
             StartCoroutine(waitFunction3());
             hframe = 2;
-            Debug.Log("hframe to 2");
-        }
-        if(holder == 1){
-            Debug.Log("hold to 2 fire");
-            holder = 2;
-            starthold();
         }
 
     }

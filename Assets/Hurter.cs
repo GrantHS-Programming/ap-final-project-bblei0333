@@ -16,23 +16,18 @@ public class Hurter : MonoBehaviour
         {
             if ((GameObject.Find("Tilemap").GetComponent<AudioSource>().time) > 1.4f)
             {
-                Debug.Log("Hurt");
                 PlayerController.hurt();
             } 
         } 
-        if (other.gameObject.tag == "Line")
-        {
-            if ((GameObject.Find("Tilemap").GetComponent<AudioSource>().time) > 1.4f)
-            {
-                Debug.Log("Hit");
-                PlayerController.holdchange(1);
-            } 
-        } 
     }
-    void OnCollisionExit2D(Collision2D oth){
-        if(oth.gameObject.tag == "Line"){
-            Debug.Log("Hit");
-            PlayerController.holdchange(0);
+    void OnCollisionStay2D(Collision2D bro){
+        if(bro.gameObject.tag == "Line"){
+            if(PlayerController.hframe == 0){    
+            PlayerController.hframe = 1;
+            PlayerController.ding();
+            PlayerController.displayhit("PERFECT!");
+            PlayerController.addscore(100 * ((PlayerController.combo / 10) + 1));
+            }
         }
     }
     // Update is called once per frame
