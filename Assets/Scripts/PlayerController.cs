@@ -7,58 +7,74 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public Rigidbody2D player;
-    public int lane;
-    public int health = 3;
-    private float iframe = 0;
-    private int combo = 0;
-    public BoxCollider2D conan;
-    public string helth = "yuh yuh";
+    public static string thehit = " ";
+    public static bool linet = false;
+    public static int score = 0;
+    public static int health = 3;
+    private static float iframe = 0;
+    public static float cframe = 0;
+    public static float hframe = 0;
+    public static float lframe = 0;
+    public static int combo = 0;
+    public Font fonty;
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
     }
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "normie")
-        {
-            if (GetComponent<AudioSource>().time > 1.4f)
-            {
-                combo++;
-            } 
-        }
-            if (other.gameObject.tag == "Red")
-        {
-
-            if(iframe == 0)
-            {
-                iframe = 1;
-                combo = 0;
-                health--;
-                Debug.Log(health);
-            }
-
-
-        } 
-    }
-    void OnCollisionStay2D(Collision2D col)
-    {
-       if (GetComponent<AudioSource>().time > 1.4f)
-       {
-           SendMessageUpwards("gon", transform.position.x);
-       }
-    }
-    void gon()
-    {
-        //nuthin
-    }
-    void bend()
+    public static void bend()
     {
         combo = 0;
+        if(cframe == 0)
+        {
+            displayhit("MISS!");
+        }
+    }
+    public static void falsify(){
+        lframe = 1;
     }
     IEnumerator waitFunction1()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.25f);
         iframe = 0;
+    }    
+    IEnumerator waitFunction2()
+    {
+        yield return new WaitForSeconds(0.05f);
+        cframe = 0;
+    }    
+    IEnumerator waitFunction3()
+    {
+        yield return new WaitForSeconds(0.125f);
+        hframe = 0;
+    }
+    IEnumerator waitFunction4()
+    {
+        yield return new WaitForSeconds(0.2f);
+        linet = false;
+    }
+    public static void cframer(){
+        cframe = 1;
+    }
+    public static void addscore(int numb){
+        score = score + numb;
+    }
+    public static void displayhit(string thit){
+        Debug.Log(thit);
+        thehit = thit;
+    }
+    public static void hurt(){
+        if(iframe == 0){
+            iframe = 1;
+            combo = 0;
+            health--;
+        }
+
+    }
+    public static void ding(){
+        if(cframe == 0){
+            combo++;     
+        }
+
     }
 
     // Update is called once per frame
@@ -81,11 +97,37 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(waitFunction1());
             iframe = 2;
         }
-        helth = health.ToString();
+        if(cframe == 1){
+            StartCoroutine(waitFunction2());
+            cframe = 2;
+        }
+        if(hframe == 1){
+            StartCoroutine(waitFunction3());
+            hframe = 2;
+        }
+        if(lframe == 1){
+            StartCoroutine(waitFunction4());
+            lframe = 2;
+        }
 
     }
     void OnGUI()
-    {
-        GUI.Label(new Rect(500, 500, 50, 50), helth);
+    {        
+        GUIStyle headStyle = new GUIStyle();
+        headStyle.fontSize = 60;
+        headStyle.normal.textColor = Color.white;
+        headStyle.font = fonty;
+        GUIStyle sub = new GUIStyle();
+        sub.fontSize = 30;
+        sub.normal.textColor = Color.white;
+        sub.font = fonty;
+        GUIStyle hitch = new GUIStyle();
+        hitch.fontSize = 20;
+        hitch.normal.textColor = Color.white;
+        hitch.font = fonty;
+        GUI.Label(new Rect(((Screen.width/4)*3), (Screen.height/2), 50, 50), "Lives:  \n"+health, headStyle);
+        GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+200), 50, 50), "Combo:  "+combo, sub);
+        GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+300), 50, 50), "Score:  "+score, sub);
+        GUI.Label(new Rect(((Screen.width/2) -60), ((Screen.height/20)*19), 50, 50), thehit, hitch);
     }
 }

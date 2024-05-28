@@ -14,6 +14,6 @@ public class dumbness : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector2(2, -1);
+        transform.position = new Vector2(-20, -4);
     }
 }
