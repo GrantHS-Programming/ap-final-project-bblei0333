@@ -11,7 +11,7 @@ public class AudioScrub : MonoBehaviour
     private void Start()
     {
         GetComponent<AudioSource>().Play();
-        GetComponent<AudioSource>().time += 3.6f;
+        GetComponent<AudioSource>().time += 11f;
     }
 
     private void OnGUI()

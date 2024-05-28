@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public static float hframe = 0;
     public static float lframe = 0;
     public static int combo = 0;
+    public static int ptouch = 0;
+    public static int otouch = 1;
     public Font fonty;
     void Start()
     {
@@ -49,7 +51,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator waitFunction4()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         linet = false;
     }
     public static void cframer(){
@@ -59,7 +61,7 @@ public class PlayerController : MonoBehaviour
         score = score + numb;
     }
     public static void displayhit(string thit){
-        Debug.Log(thit);
+        //Debug.Log(thit);
         thehit = thit;
     }
     public static void hurt(){
