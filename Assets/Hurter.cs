@@ -12,15 +12,23 @@ public class Hurter : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Red")
+        if(other.gameObject.tag == "Line"){
+            PlayerController.linet = true;
+        }
+    }
+    void OnCollisionExit2D(Collision2D lol){
+        if(lol.gameObject.tag == "Line"){
+            PlayerController.falsify();
+        }
+    }
+    void OnCollisionStay2D(Collision2D bro){
+        if (bro.gameObject.tag == "Red")
         {
             if ((GameObject.Find("Tilemap").GetComponent<AudioSource>().time) > 1.4f)
             {
                 PlayerController.hurt();
             } 
         } 
-    }
-    void OnCollisionStay2D(Collision2D bro){
         if(bro.gameObject.tag == "Line"){
             if(PlayerController.hframe == 0){    
             PlayerController.hframe = 1;

@@ -12,6 +12,14 @@ public class Combokilla : MonoBehaviour
         if (col.gameObject.tag == "normie")
         {
             PlayerController.bend();
+        } 
+        
+    }
+    void OnCollisionStay2D(Collision2D bol){
+        
+        if (bol.gameObject.tag == "Line" && PlayerController.linet == false)
+        {
+            PlayerController.bend();
         }  
     }
     void Start()

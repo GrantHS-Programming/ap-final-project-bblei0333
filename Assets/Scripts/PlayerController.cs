@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     public Rigidbody2D player;
     public static string thehit = " ";
+    public static bool linet = false;
     public static int score = 0;
     public static int health = 3;
     private static float iframe = 0;
     public static float cframe = 0;
     public static float hframe = 0;
+    public static float lframe = 0;
     public static int combo = 0;
     public Font fonty;
     void Start()
@@ -27,9 +29,12 @@ public class PlayerController : MonoBehaviour
             displayhit("MISS!");
         }
     }
+    public static void falsify(){
+        lframe = 1;
+    }
     IEnumerator waitFunction1()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.25f);
         iframe = 0;
     }    
     IEnumerator waitFunction2()
@@ -39,8 +44,13 @@ public class PlayerController : MonoBehaviour
     }    
     IEnumerator waitFunction3()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.125f);
         hframe = 0;
+    }
+    IEnumerator waitFunction4()
+    {
+        yield return new WaitForSeconds(0.2f);
+        linet = false;
     }
     public static void cframer(){
         cframe = 1;
@@ -94,6 +104,10 @@ public class PlayerController : MonoBehaviour
         if(hframe == 1){
             StartCoroutine(waitFunction3());
             hframe = 2;
+        }
+        if(lframe == 1){
+            StartCoroutine(waitFunction4());
+            lframe = 2;
         }
 
     }
