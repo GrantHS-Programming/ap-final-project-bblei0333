@@ -17,9 +17,10 @@ public class Combokilla : MonoBehaviour
     }
     void OnCollisionStay2D(Collision2D bol){
         
-        if (bol.gameObject.tag == "Line" && PlayerController.linet == false)
+        if (bol.gameObject.tag == "Uline")
         {
             PlayerController.bend();
+            bol.gameObject.tag = "Mline";
         }  
     }
     void Start()

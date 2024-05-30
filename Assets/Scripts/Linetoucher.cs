@@ -11,19 +11,21 @@ public class Linetoucher : MonoBehaviour
     }
     void OnCollisionExit2D(Collision2D lol){
         if(lol.gameObject.tag == "Line"){
-            PlayerController.otouch = 1;
-            PlayerController.linet = true;
+            lol.gameObject.tag = "Mline";
+            lol.gameObject.GetComponent<Renderer>().sortingLayerID = SortingLayer.NameToID("under");
         }
     }
     void OnCollisionStay2D(Collision2D bro){
         if(bro.gameObject.tag == "Line"){
             if(PlayerController.hframe == 0){    
-                PlayerController.hframe = 1;
+            PlayerController.hframe = 1;
             PlayerController.ding();
             PlayerController.displayhit("PERFECT!");
             PlayerController.addscore(100 * ((PlayerController.combo / 10) + 1));
             }
-            PlayerController.otouch = 0;
+        }
+        if(bro.gameObject.tag == "Uline"){
+            bro.gameObject.tag = "Line";
         }
     }
     // Update is called once per frame
