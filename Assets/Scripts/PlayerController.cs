@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     public Rigidbody2D player;
     public static string thehit = " ";
+    public static bool linet = false;
     public static int score = 0;
     public static int health = 3;
     private static float iframe = 0;
@@ -24,12 +25,11 @@ public class PlayerController : MonoBehaviour
         combo = 0;
         if(cframe == 0)
         {
-            displayhit("MISS!");
         }
     }
     IEnumerator waitFunction1()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(1);
         iframe = 0;
     }    
     IEnumerator waitFunction2()
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         score = score + numb;
     }
     public static void displayhit(string thit){
-        //Debug.Log(thit);
+        Debug.Log(thit);
         thehit = thit;
     }
     public static void hurt(){
