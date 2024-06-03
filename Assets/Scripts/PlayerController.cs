@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator waitFunction1()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         iframe = 0;
     }    
     IEnumerator waitFunction2()
