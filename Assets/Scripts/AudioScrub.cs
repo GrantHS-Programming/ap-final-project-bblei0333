@@ -7,11 +7,12 @@ public class AudioScrub : MonoBehaviour
 {
 
     public float scrollPos = 0f;
+    public float spos;
 
     private void Start()
     {
         GetComponent<AudioSource>().Play();
-        GetComponent<AudioSource>().time += 11f;
+        GetComponent<AudioSource>().time += spos;
     }
 
     private void OnGUI()

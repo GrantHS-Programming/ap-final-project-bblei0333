@@ -12,10 +12,14 @@ public class Linetoucher : MonoBehaviour
     void OnCollisionExit2D(Collision2D lol){
         if(lol.gameObject.tag == "Line"){
             lol.gameObject.tag = "Mline";
-            lol.gameObject.GetComponent<Renderer>().sortingLayerID = SortingLayer.NameToID("under");
+           
         }
     }
     void OnCollisionStay2D(Collision2D bro){
+        if(bro.gameObject.tag == "Uline" || bro.gameObject.tag == "Mline"){
+            bro.gameObject.tag = "Line";
+            bro.gameObject.GetComponent<Renderer>().sortingLayerID = SortingLayer.NameToID("fore");
+        }
         if(bro.gameObject.tag == "Line"){
             if(PlayerController.hframe == 0){    
             PlayerController.hframe = 1;
@@ -23,9 +27,6 @@ public class Linetoucher : MonoBehaviour
             PlayerController.displayhit("PERFECT!");
             PlayerController.addscore(100 * ((PlayerController.combo / 10) + 1));
             }
-        }
-        if(bro.gameObject.tag == "Uline"){
-            bro.gameObject.tag = "Line";
         }
     }
     // Update is called once per frame

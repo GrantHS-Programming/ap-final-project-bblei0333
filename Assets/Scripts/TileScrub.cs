@@ -5,16 +5,27 @@ using UnityEngine.Tilemaps;
 public class TileScrub : MonoBehaviour
 {
     public Tilemap map;
+    public AudioClip won;
+    public  AudioClip too;
+    AudioSource asorce;
     private AudioScrub ascrub;
     private float scrollPos = 0f;
     public Rigidbody2D Tilemap;
     public Rigidbody2D player;
     float tscroll = 0f;
+    public bool offset = true;
 
     private void Start()
     {
         ascrub = GameObject.Find("Tilemap").GetComponent<AudioScrub>();
-        GetComponent<AudioSource>().Play();
+        asorce = GetComponent<AudioSource>();
+        if(offset){
+        asorce.clip = too;
+        }
+        else{
+        asorce.clip = won;
+        }
+        asorce.Play();
         Tilemap = GetComponent<Rigidbody2D>();
         player = GetComponent<Rigidbody2D>();
         tscroll = ascrub.scrollPos;
