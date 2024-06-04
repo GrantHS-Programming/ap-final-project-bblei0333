@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         cframe = 1;
     }
     public static void addscore(int numb){
-        score = score + numb;
+        score = score + (numb/10);
     }
     public static void displayhit(string thit){
         //Debug.Log(thit);

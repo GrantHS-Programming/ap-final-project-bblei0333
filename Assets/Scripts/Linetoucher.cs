@@ -25,7 +25,7 @@ public class Linetoucher : MonoBehaviour
             PlayerController.hframe = 1;
             PlayerController.ding();
             PlayerController.displayhit("PERFECT!");
-            PlayerController.addscore(100 * ((PlayerController.combo / 10) + 1));
+            PlayerController.addscore(10 * ((PlayerController.combo / 10) + 1));
             }
         }
     }
