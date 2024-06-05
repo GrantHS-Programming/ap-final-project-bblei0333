@@ -17,7 +17,7 @@ public class AudioScrub : MonoBehaviour
 
     private void OnGUI()
     {
-        scrollPos = GUI.HorizontalSlider(new Rect(0f, 50f, Screen.width, 50f), scrollPos, 0, GetComponent<AudioSource>().clip.length);
+        scrollPos = GUI.HorizontalSlider(new Rect(0f, -250f, Screen.width, 50f), scrollPos, 0, GetComponent<AudioSource>().clip.length);
         if (GUI.changed == true)
         {
             GetComponent<AudioSource>().time = scrollPos;
