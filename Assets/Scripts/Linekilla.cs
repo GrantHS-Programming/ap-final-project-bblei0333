@@ -13,6 +13,7 @@ public class Linekilla : MonoBehaviour
     void OnCollisionStay2D(Collision2D bol){
         if((bol.gameObject.tag == "Uline" || bol.gameObject.tag == "Mline") && (PlayerController.hframe == 0)){
             PlayerController.bend();
+            PlayerController.displayhit("MISS!");
             bol.gameObject.GetComponent<Renderer>().sortingLayerID = SortingLayer.NameToID("under");
         }
     }
