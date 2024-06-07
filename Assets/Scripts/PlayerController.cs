@@ -17,11 +17,26 @@ public class PlayerController : MonoBehaviour
     public static int combo = 0;
     public Font fonty;
     private int mater = 30;
+    public ParticleSystem ps1; 
+    public ParticleSystem ps2; 
+    public ParticleSystem ps3; 
     private static int coostart = 0;
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
     }
+    void OnCollisionStay2D(Collision2D pro){
+    if(pro.gameObject.tag == "Line" || pro.gameObject.tag == "Mline"){
+       ps2.Play();}
+    if(pro.gameObject.tag == "normie"){
+        ps3.Play();
+    }}
+    void OnCollisionExit2D(Collision2D pol){
+        
+    if(pol.gameObject.tag == "Line" || pol.gameObject.tag == "Mline"){
+       ps2.Stop();}
+    }
+    
     public static void bend()
     {
         combo = 0;

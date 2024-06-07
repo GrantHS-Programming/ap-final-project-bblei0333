@@ -15,6 +15,7 @@ public class Hurter : MonoBehaviour
             if ((GameObject.Find("Tilemap").GetComponent<AudioSource>().time) > 1.4f)
             {
                 PlayerController.hurt();
+                Debug.Log(bro.gameObject);
             } 
         } 
     }
