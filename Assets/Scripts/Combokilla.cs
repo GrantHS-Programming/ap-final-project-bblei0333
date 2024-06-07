@@ -12,6 +12,7 @@ public class Combokilla : MonoBehaviour
         if (col.gameObject.tag == "normie")
         {
             PlayerController.bend();
+            PlayerController.displayhit("MISS!");
         } 
         
     }

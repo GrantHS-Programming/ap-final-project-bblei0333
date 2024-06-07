@@ -16,11 +16,17 @@ public class PlayerController : MonoBehaviour
     public static float hframe = 0;
     public static int combo = 0;
     public Font fonty;
+    public static int exploder = 0;
     private int mater = 30;
     public ParticleSystem ps1; 
     public ParticleSystem ps2; 
     public ParticleSystem ps3; 
     private static int coostart = 0;
+    private static Color varb = Color.white;
+    private static Color lightblue;
+    private static Color lightgren;
+    private static Color whet;
+    public static int misses = 0;
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
@@ -82,6 +88,19 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(thit);
         coostart = 1;
         thehit = thit;
+        if(thit == "PERFECT!"){
+            varb = new Color(0.007f, 0.968f, 0.219f, 1f);
+        }
+        if(thit == "OK!"){
+            varb = new Color(0f, 1f, 1f, 1f);
+        }
+        if(thit == "BAD!"){
+            varb = Color.yellow;
+        }
+        if(thit == "MISS!"){
+            varb = Color.red;
+            misses++;
+        }
         
     }
     public static void hurt(){
@@ -140,21 +159,22 @@ public class PlayerController : MonoBehaviour
         headStyle.normal.textColor = Color.white;
         headStyle.font = fonty;
         GUIStyle sub = new GUIStyle();
-        sub.fontSize = 30;
-        sub.normal.textColor = Color.white;
+        sub.fontSize = 70;
+        sub.normal.textColor = new Color(1f, 1f, 1f, 0.5f);
         sub.font = fonty;
+        sub.alignment = TextAnchor.MiddleCenter;
         GUIStyle sub2 = new GUIStyle();
         sub2.fontSize = 30;
         sub2.normal.textColor = Color.white;
         sub2.font = fonty;
         GUIStyle hitch = new GUIStyle();
         hitch.fontSize = mater;
-        hitch.normal.textColor = Color.white;
+        hitch.normal.textColor = varb;
         hitch.font = fonty;
         hitch.alignment = TextAnchor.MiddleCenter;
-        GUI.Label(new Rect(((Screen.width/4)*3), (Screen.height/2), 50, 50), "Lives:  \n"+health, headStyle);
-        GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+200), 50, 50), "Combo:  "+combo, sub);
-        GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+300), 50, 50), "Score:  "+score, sub2);
-        GUI.Label(new Rect(((Screen.width/2) -30), ((Screen.height/20)*19), 50, 50), thehit, hitch);
+        GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+exploder), 50, 50), "Lives:  \n"+health, headStyle);
+        GUI.Label(new Rect(((Screen.width/2)-25), ((Screen.height/2)-450 + exploder), 50, 50), ""+combo, sub);
+        GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+300 + exploder), 50, 50), "Score:  "+score, sub2);
+        GUI.Label(new Rect(((Screen.width/2) -30), (((Screen.height/20)*19) + exploder), 50, 50), thehit, hitch);
     }
 }

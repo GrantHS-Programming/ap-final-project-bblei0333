@@ -26,5 +26,11 @@ public class AudioScrub : MonoBehaviour
 
         GUI.Label(new Rect(10f, 80f, 100f, 30f), (GetComponent<AudioSource>().time).ToString());
     }
+    private void Update(){
+        if(GetComponent<AudioSource>().time > 143){
+            ender.ending = 1;
+            PlayerController.exploder = 100000;
+        }
+    }
     
 }
