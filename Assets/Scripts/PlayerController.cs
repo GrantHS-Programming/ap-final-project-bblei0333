@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour
     private static Color lightgren;
     private static Color whet;
     public static int misses = 0;
+    public static int hitcount = 0;
+    public static int bs = 0;
+    public static int os = 0;
+    public static int ps = 0;
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
@@ -89,13 +93,16 @@ public class PlayerController : MonoBehaviour
         coostart = 1;
         thehit = thit;
         if(thit == "PERFECT!"){
-            varb = new Color(0.007f, 0.968f, 0.219f, 1f);
+            varb = new Color(0.007f, 0.968f, 0.119f, 1f);
+            ps++;
         }
         if(thit == "OK!"){
             varb = new Color(0f, 1f, 1f, 1f);
+            os++;
         }
         if(thit == "BAD!"){
             varb = Color.yellow;
+            bs++;
         }
         if(thit == "MISS!"){
             varb = Color.red;
@@ -108,6 +115,7 @@ public class PlayerController : MonoBehaviour
             iframe = 1;
             combo = 0;
             health--;
+            hitcount++;
         }
 
     }
@@ -159,7 +167,7 @@ public class PlayerController : MonoBehaviour
         headStyle.normal.textColor = Color.white;
         headStyle.font = fonty;
         GUIStyle sub = new GUIStyle();
-        sub.fontSize = 70;
+        sub.fontSize = 65;
         sub.normal.textColor = new Color(1f, 1f, 1f, 0.5f);
         sub.font = fonty;
         sub.alignment = TextAnchor.MiddleCenter;
@@ -173,7 +181,7 @@ public class PlayerController : MonoBehaviour
         hitch.font = fonty;
         hitch.alignment = TextAnchor.MiddleCenter;
         GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+exploder), 50, 50), "Lives:  \n"+health, headStyle);
-        GUI.Label(new Rect(((Screen.width/2)-25), ((Screen.height/2)-450 + exploder), 50, 50), ""+combo, sub);
+        GUI.Label(new Rect(((Screen.width/2)-25), (((Screen.height/20)*2)+ exploder), 50, 50), ""+combo, sub);
         GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+300 + exploder), 50, 50), "Score:  "+score, sub2);
         GUI.Label(new Rect(((Screen.width/2) -30), (((Screen.height/20)*19) + exploder), 50, 50), thehit, hitch);
     }
