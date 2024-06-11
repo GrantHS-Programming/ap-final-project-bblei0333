@@ -7,7 +7,8 @@ public class AudioScrub : MonoBehaviour
 {
 
     public float scrollPos = 0f;
-    public float spos;
+    public float spos = 20f;
+    public static int endt = 0;
 
     private void Start()
     {
@@ -30,6 +31,10 @@ public class AudioScrub : MonoBehaviour
         if(GetComponent<AudioSource>().time > 143){
             ender.ending = 1;
             PlayerController.exploder = 100000;
+        }
+        if(endt == 1){
+        GetComponent<AudioSource>().time = 145;
+        endt = 2;
         }
     }
     

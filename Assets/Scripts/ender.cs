@@ -52,6 +52,7 @@ public Font fonty;
         }
     }
     public void over(){
+        AudioScrub.endt = 1;
         transform.position = new Vector2(0, 0.8f);
         misscount = PlayerController.misses;
         pcount = PlayerController.ps;

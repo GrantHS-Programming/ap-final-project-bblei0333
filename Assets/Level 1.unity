@@ -11684,7 +11684,7 @@ MonoBehaviour:
   too: {fileID: 8300000, guid: 55d653509b1eb894cb6f9620f996d9ab, type: 3}
   Tilemap: {fileID: 455130790}
   player: {fileID: 804564171}
-  offset: 1
+  offset: 0
 --- !u!82 &455130788
 AudioSource:
   m_ObjectHideFlags: 0

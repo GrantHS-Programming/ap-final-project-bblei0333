@@ -29,6 +29,9 @@ public class TileScrub : MonoBehaviour
         Tilemap = GetComponent<Rigidbody2D>();
         player = GetComponent<Rigidbody2D>();
         tscroll = ascrub.scrollPos;
+        if(carrier.offsetmode){
+            offset = true;
+        }
     }
     void hitsend(float olo)
     {

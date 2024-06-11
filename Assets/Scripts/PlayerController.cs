@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
+        if(carrier.hmode == 1){
+            health = 1;
+        }
     }
     void OnCollisionStay2D(Collision2D pro){
     if(pro.gameObject.tag == "Line" || pro.gameObject.tag == "Mline"){
@@ -114,8 +117,12 @@ public class PlayerController : MonoBehaviour
         if(iframe == 0){
             iframe = 1;
             combo = 0;
-            health--;
             hitcount++;
+            if(carrier.lmode == 1 || carrier.hmode == 1){
+            health--;}
+            else{
+                score =- 500;
+            }
         }
 
     }
@@ -158,6 +165,9 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(waitFunction4());
             coostart = 2;
         }
+        if(health == 0){
+            ender.ending = 1;
+        }
 
     }
     void OnGUI()
@@ -180,7 +190,8 @@ public class PlayerController : MonoBehaviour
         hitch.normal.textColor = varb;
         hitch.font = fonty;
         hitch.alignment = TextAnchor.MiddleCenter;
-        GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+exploder), 50, 50), "Lives:  \n"+health, headStyle);
+        if(carrier.lmode == 1 || carrier.hmode == 1){
+        GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+exploder), 50, 50), "Lives:  \n"+health, headStyle);}
         GUI.Label(new Rect(((Screen.width/2)-25), (((Screen.height/20)*2)+ exploder), 50, 50), ""+combo, sub);
         GUI.Label(new Rect(((Screen.width/4)*3), ((Screen.height/2)+300 + exploder), 50, 50), "Score:  "+score, sub2);
         GUI.Label(new Rect(((Screen.width/2) -30), (((Screen.height/20)*19) + exploder), 50, 50), thehit, hitch);
