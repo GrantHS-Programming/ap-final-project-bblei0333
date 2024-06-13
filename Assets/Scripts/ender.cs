@@ -17,6 +17,15 @@ public Font fonty;
     // Start is called before the first frame update
     void Start()
     {
+    misscount = 0;
+    gradenum = 0f;
+    hits = 0;
+    grade = "";
+    ending = 0;
+    labeller = 0;
+    pcount = 0;
+    ocount = 0;
+    bcount = 0;
     }
     void Update(){
         if(ending == 1){
@@ -52,7 +61,9 @@ public Font fonty;
         }
     }
     public void over(){
+        Cursorhider.hidden = 0;
         AudioScrub.endt = 1;
+        Retart.endr = 1;
         transform.position = new Vector2(0, 0.8f);
         misscount = PlayerController.misses;
         pcount = PlayerController.ps;

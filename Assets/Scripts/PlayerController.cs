@@ -33,6 +33,23 @@ public class PlayerController : MonoBehaviour
     public static int ps = 0;
     void Start()
     {
+        thehit = " ";
+        linet = false;
+        score = 0;
+        health = 3;
+        iframe = 0f;
+        cframe = 0f;
+        hframe = 0f;
+        combo = 0;
+        exploder = 0;
+        mater = 30;
+        coostart = 0;
+        varb = Color.white;
+        misses = 0;
+        hitcount = 0;
+        bs = 0;
+        os = 0;
+        ps = 0;
         player = GetComponent<Rigidbody2D>();
         if(carrier.hmode == 1){
             health = 1;
@@ -121,7 +138,7 @@ public class PlayerController : MonoBehaviour
             if(carrier.lmode == 1 || carrier.hmode == 1){
             health--;}
             else{
-                score =- 500;
+                score -= 500;
             }
         }
 
